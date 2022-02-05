@@ -5,6 +5,7 @@ import './App.css';
 import Filter from './components/Filter';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
+import {Layout} from './components/Layout.styles'
 
 class App extends Component{
   state = {
@@ -17,9 +18,9 @@ formSudmitHandler = data => {
     contact=>
     contact.name.toLowerCase() === data.name.toLowerCase()))
       {
-        this.setState({
-        contacts:[...this.state.contacts,{...data , id:nanoid()}],
-        })
+        this.setState(prevState => ({
+        contacts:[...prevState.contacts,{...data , id:nanoid()}],
+        }))
         return true;
       }else{
         alert('Rosie Simpson is already in contacts.'); 
@@ -39,7 +40,7 @@ this.setState({
 
   render() {
   return (
-    <>
+    <Layout>
       <h2>Phonebook</h2>
       <ContactForm onSubmit={this.formSudmitHandler}/> 
       <h2>Contacts</h2>
@@ -49,7 +50,7 @@ this.setState({
         contacts={this.state.contacts}
         removeContact={this.removeContact}
       />
-    </>
+    </Layout>
   );
 }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types'
-
+import { LableFilter } from "../LableFilter.styles";
 
 const Filter = ({
     handleChange
@@ -9,9 +9,9 @@ const Filter = ({
    const filterInputId = nanoid();
 return(
 <>
-    <label htmlFor={filterInputId}>
+    <LableFilter htmlFor={filterInputId}>
           Find contacts by name
-    </label>
+    </LableFilter>
     <input
         id={filterInputId}
         type="text"
@@ -24,8 +24,8 @@ return(
 )
 }
 
-export default Filter;
-
 Filter.propTypes = {
     handleChange: PropTypes.func.isRequired,
   }
+
+export default Filter;

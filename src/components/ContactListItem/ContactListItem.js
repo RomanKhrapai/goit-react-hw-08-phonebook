@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from 'prop-types'
+import { Item } from "../Item.styles";
+import { Box } from "../Box.styles";
+const ContactListItem = ({ name, number, children }) => {
 
-const ContactListItem = ({id, name, number, children }) => {
-   console.log(id);
     return(
-    <li key={id}>
-        {name} : {number}
+    <Item >
+        <Box>
+            {name} : {number}
+        </Box>
         {children}
-        </li>
+    </Item>
     )   
 }
 
-export default ContactListItem;
-
 ContactListItem.propTypes = {
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
     children: PropTypes.element.isRequired,
   }
+
+export default ContactListItem;

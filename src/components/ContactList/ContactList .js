@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import ContactListItem from '../ContactListItem';
+import { List } from "../List.styled";
 
 const ContactList = ({filter, contacts ,removeContact }) => {
 
     const filterItem = name =>  name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
 
 return(
-    <ul>
+    <List>
     {contacts.map(({id,name,number})=> 
         filterItem(name) &&
             <ContactListItem 
@@ -18,14 +19,15 @@ return(
                 <button data-id ={id} onClick={removeContact}>Delete</button>
             </ContactListItem>
     )}
-    </ul>
+    </List>
 )   
 }
-
-export default ContactList;
 
 ContactList.propTypes = {
     filter: PropTypes.string.isRequired,
     contacts: PropTypes.arrayOf(PropTypes.object),
     removeContact: PropTypes.func.isRequired,
   }
+
+export default ContactList;
+
