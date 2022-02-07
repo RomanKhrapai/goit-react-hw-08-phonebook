@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import ContactListItem from '../ContactListItem';
-import { List } from "../List.styled";
+import { List } from "./List.styled";
 
 const ContactList = ({filter, contacts ,removeContact }) => {
 
     const filterItem = name =>  name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
 
 return(
+   
     <List>
-    {contacts.map(({id,name,number})=> 
+    { contacts.map(({id,name,number})=> 
         filterItem(name) &&
             <ContactListItem 
                 key = {id}

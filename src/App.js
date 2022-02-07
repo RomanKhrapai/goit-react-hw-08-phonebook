@@ -13,6 +13,8 @@ class App extends Component{
     filter: '',
   }
 
+localStoregeKey = "contact";
+
 formSudmitHandler = data => {
   if(!this.state.contacts.find(
     contact=>
@@ -38,17 +40,33 @@ this.setState({
     this.setState({ [name]: value });
   };
 
+componentDidMount(){
+  const data = localStorage.getItem(this.localStoregeKey);
+  if(!data){return}
+  this.setState({
+    contacts: JSON.parse(data),
+  })
+}
+
+
+componentDidUpdate(prevProps, prevState){
+  if(prevState.contacts!==this.state.contacts){
+    localStorage.setItem(this.localStoregeKey, JSON.stringify(this.state.contacts));
+  }
+}
   render() {
+    const {formSudmitHandler,handleChange,removeContact} = this;
+    const {filter, contacts} = this.state;
   return (
     <Layout>
       <h2>Phonebook</h2>
-      <ContactForm onSubmit={this.formSudmitHandler}/> 
+      <ContactForm onSubmit={formSudmitHandler}/> 
       <h2>Contacts</h2>
-      <Filter  handleChange={this.handleChange}/>
+      <Filter  handleChange={handleChange}/>
       <ContactList 
-        filter={this.state.filter}
-        contacts={this.state.contacts}
-        removeContact={this.removeContact}
+        filter={filter}
+        contacts={contacts}
+        removeContact={removeContact}
       />
     </Layout>
   );

@@ -1,7 +1,7 @@
 import {React, Component } from "react";
 import { nanoid } from "nanoid";
-import {Form} from '../Form.styles';
-import { InputForm } from "../InputForm.styles";
+import {Form} from './Form.styles';
+import { InputForm } from "./InputForm.styles";
 
 
 class ContactForm extends Component  {

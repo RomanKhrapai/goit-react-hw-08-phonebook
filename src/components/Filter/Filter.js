@@ -1,7 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types'
-import { LableFilter } from "../LableFilter.styles";
+import { LableFilter } from "./LableFilter.styles";
 
 const Filter = ({
     handleChange
