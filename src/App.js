@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import Filter from './components/Filter';
 import ContactForm from './components/ContactForm';
 import ContactList from 'components/ContactList';
@@ -13,6 +14,7 @@ function App() {
       <h2>Contacts</h2>
       <Filter />
       <ContactList />
+      <Toaster />
     </Layout>
   );
 }

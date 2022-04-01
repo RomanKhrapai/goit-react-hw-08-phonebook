@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import contactsActions from 'redux/contacts/contacts-actions';
+import toast from 'react-hot-toast';
 import { Form } from './Form.styles';
 import { InputForm } from './InputForm.styles';
 import { getItem } from 'redux/contacts/contacts-selector';
@@ -40,7 +41,7 @@ export default function ContactForm() {
       dispatch(contactsActions.addContact({ name, number }));
       reset();
     } else {
-      alert('Rosie Simpson is already in contacts.');
+      toast.error('Rosie Simpson is already in contacts.');
     }
   };
 
