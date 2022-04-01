@@ -29,7 +29,7 @@ const contactsPersistConfig = {
 };
 
 const store = configureStore({
-  reducer: persistReducer(contactsPersistConfig, contactsReduser),
+  reducer: { contacts: persistReducer(contactsPersistConfig, contactsReduser) },
   middleware,
   // eslint-disable-next-line no-undef
   devTools: process.env.NODE_ENV === 'development',
