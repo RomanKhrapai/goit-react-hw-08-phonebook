@@ -1,11 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import contactsActions from 'redux/contacts/contacts-actions';
 import { Form } from './Form.styles';
 import { InputForm } from './InputForm.styles';
 
-function ContactForm({ onSubmit }) {
+function ContactForm({ contacts, onSubmit }) {
   const [name, setname] = useState('');
   const [number, setnumber] = useState('');
 
@@ -27,11 +28,17 @@ function ContactForm({ onSubmit }) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const statusWrite = onSubmit({ name, number });
-    if (!statusWrite) {
-      return;
+
+    if (
+      !contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      onSubmit({ name, number });
+      reset();
+    } else {
+      alert('Rosie Simpson is already in contacts.');
     }
-    reset();
   };
 
   const reset = () => {
@@ -74,6 +81,17 @@ function ContactForm({ onSubmit }) {
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  contacts: PropTypes.array.isRequired,
 };
 
-export default ContactForm;
+const mapStateToProps = state => {
+  return {
+    contacts: state.contact.items,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  onSubmit: data => dispatch(contactsActions.addContact(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
