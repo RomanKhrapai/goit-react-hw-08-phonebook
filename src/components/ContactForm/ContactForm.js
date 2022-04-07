@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
-import contactsActions from 'redux/contacts/contacts-actions';
+//import * as contactsActions from 'redux/contacts/contacts-actions';
+import * as cotactsOperation from '../../redux/contacts/contacts-operations';
 import toast from 'react-hot-toast';
 import { Form } from './Form.styles';
 import { InputForm } from './InputForm.styles';
@@ -38,7 +39,7 @@ export default function ContactForm() {
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      dispatch(contactsActions.addContact({ name, number }));
+      dispatch(cotactsOperation.addContact({ name, number }));
       reset();
     } else {
       toast.error('Rosie Simpson is already in contacts.');

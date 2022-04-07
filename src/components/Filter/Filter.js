@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 
-import contactsActions from 'redux/contacts/contacts-actions';
+import * as contactsActions from 'redux/contacts/contacts-actions';
 import { LableFilter } from './LableFilter.styles';
 
 export default function Filter() {

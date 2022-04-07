@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import contactsActions from 'redux/contacts/contacts-actions';
+import * as cotactsOperation from '../../redux/contacts/contacts-operations';
 import { getFilter, getItem } from 'redux/contacts/contacts-selector';
 import ContactListItem from '../ContactListItem';
+
 import { List } from './List.styled';
 
 export default function ContactList() {
@@ -14,14 +15,21 @@ export default function ContactList() {
   const filterItem = name =>
     name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
 
+  useEffect(() => {
+    dispatch(cotactsOperation.fetchContacts());
+  }, []);
+
   return (
     <List>
       {contacts.map(
-        ({ id, name, number }) =>
+        ({ id, name, phone }) =>
           filterItem(name) && (
-            <ContactListItem key={id} name={name} number={number}>
+            <ContactListItem key={id} name={name} number={phone}>
               <button
-                onClick={() => dispatch(contactsActions.deleteContact(id))}
+                onClick={() => {
+                  dispatch(cotactsOperation.deleteContact(id));
+                  // dispatch(cotactsOperation.fetchContacts());
+                }}
               >
                 Delete
               </button>
