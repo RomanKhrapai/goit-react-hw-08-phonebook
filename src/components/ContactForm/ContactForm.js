@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 //import * as contactsActions from 'redux/contacts/contacts-actions';
@@ -40,7 +40,6 @@ export default function ContactForm() {
       )
     ) {
       dispatch(cotactsOperation.addContact({ name, number }));
-      reset();
     } else {
       toast.error('Rosie Simpson is already in contacts.');
     }
@@ -50,6 +49,10 @@ export default function ContactForm() {
     setname('');
     setnumber('');
   };
+
+  useEffect(() => {
+    reset();
+  }, [contacts]);
 
   return (
     <Form className="form" onSubmit={handleSubmit}>

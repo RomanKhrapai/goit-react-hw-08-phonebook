@@ -4,65 +4,39 @@ import {
   deleteContact,
   addContact,
 } from './contacts-operations';
-import * as actions from './contacts-actions';
+import { changeFiltre } from './contacts-actions';
 
 const items = createReducer([], {
-  [addContact.pending]: () => {
-    console.log('01');
-  },
-  [addContact.fulfilled]: () => {
-    console.log('02');
-  },
-  [addContact.error]: () => {
-    console.log('03');
-  },
-  [fetchContacts.pending]: () => {
-    console.log('04');
-  },
-
-  [fetchContacts.fulfilled]: (_, action) => action.payload,
-
-  // [addContact.fulfilled]: (state, action) => {
-  //   console.log(action);
-  //   //return  action;
-  // },
-  // [deleteContact.fulfilled]: (state, { payload }) =>
-  //   state.filter(contact => contact.id !== payload),
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+  [deleteContact.fulfilled]: (state, { payload }) =>
+    state.filter(contact => contact.id !== payload),
 });
 
 const filter = createReducer('', {
-  [actions.changeFiltre]: (_, { payload }) => payload,
+  [changeFiltre]: (_, { payload }) => payload,
 });
 
 const isLoading = createReducer(false, {
-  [addContact.fulfilled]: () => {
-    console.log(0);
-    return true;
-  },
-  [deleteContact.pending]: () => {
-    console.log(0);
-    return true;
-  },
-  [fetchContacts.pending]: () => {
-    console.log(1);
-    return true;
-  },
-  [fetchContacts.fulfilled]: () => {
-    console.log(2);
-    return false;
-  },
-  [fetchContacts.error]: () => {
-    console.log(3);
-    return false;
-  },
+  [addContact.pending]: () => true,
+  [deleteContact.pending]: () => true,
+  [fetchContacts.pending]: () => true,
+
+  [addContact.fulfilled]: () => false,
+  [deleteContact.fulfilled]: () => false,
+  [fetchContacts.fulfilled]: () => false,
+
+  [addContact.rejected]: () => false,
+  [deleteContact.rejected]: () => false,
+  [fetchContacts.rejected]: () => false,
 });
 
 const error = createReducer(null, {
-  [fetchContacts.error]: (_, action) => action.payload,
+  [fetchContacts.rejected]: (_, { error }) => error.message,
   [fetchContacts.pending]: () => null,
-  [deleteContact.error]: (_, action) => action.payload,
+  [deleteContact.rejected]: (_, { error }) => error.message,
   [deleteContact.pending]: () => null,
-  [addContact.error]: (_, action) => action.payload,
+  [addContact.rejected]: (_, { error }) => error.message,
   [addContact.pending]: () => null,
 });
 
