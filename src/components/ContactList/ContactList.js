@@ -33,8 +33,8 @@ export default function ContactList() {
         </Loader>
       ) : (
         <>
-          {items.map(({ id, name, phone }) => (
-            <ContactListItem key={id} name={name} number={phone}>
+          {items.map(({ id, name, number }) => (
+            <ContactListItem key={id} name={name} number={number}>
               <button
                 onClick={() => {
                   dispatch(cotactsOperation.deleteContact(id));

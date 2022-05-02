@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://624a92c2fd7e30c51c0f021d.mockapi.io/contacts';
+axios.defaults.baseURL = 'http://connections-api.herokuapp.com';
 
 export async function fetchContacts() {
   const { data } = await axios.get('/contacts');
@@ -13,13 +13,15 @@ export async function addContact({ name, number }) {
     url: '/contacts',
     data: {
       name,
-      phone: number,
+      number,
     },
   });
+  console.log(data);
   return data;
 }
 
 export async function deleteContact(id) {
   const { data } = await axios.delete(`/contacts/${id}`);
+  data.id = id;
   return data;
 }
