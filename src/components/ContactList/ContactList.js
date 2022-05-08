@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
@@ -23,6 +22,7 @@ export default function ContactList() {
 
   const showNumber = 6;
   const items = showAll ? contacts : contacts.slice(0, showNumber);
+
   useEffect(() => {
     console.log('contact list retch contact ');
     dispatch(cotactsOperation.fetchContacts());

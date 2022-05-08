@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import contactsReduser from './contacts/contacts-reduser';
+import contactsReduser from './contacts/contacts-slice';
 import authReduser from './auth/auth-slice';
 import logger from 'redux-logger';
 import {
