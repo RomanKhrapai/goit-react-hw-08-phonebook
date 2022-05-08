@@ -9,7 +9,7 @@ import RegisterView from 'views/RegisterView';
 import HomeView from 'views/HomeView';
 import LoginView from 'views/LoginView';
 import PhoneBookView from 'views/PhnebookView';
-import AppBar1 from 'components/MenuAppBar';
+import MenuAppBar from 'components/MenuAppBar';
 import Container from '@mui/material/Container';
 import PrivateRoute from 'components/PrivatRoute';
 import PublicRoute from 'components/PublicRoute';
@@ -26,40 +26,34 @@ function App() {
   return (
     !isFetchingCurrentUser && (
       <Container fixed>
-        <AppBar1 />
+        <MenuAppBar />
         <Routes>
-          <Route path="goit-react-hw-08-phonebook" element={<HomeView />}>
-            <Route
-              path="register"
-              element={
-                <PublicRoute>
-                  <RegisterView />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <PublicRoute>
-                  <LoginView />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="phoneBook"
-              element={
-                <PrivateRoute>
-                  <PhoneBookView />
-                </PrivateRoute>
-              }
-            />
-          </Route>
+          <Route path="/" element={<HomeView />} />
           <Route
-            path="*"
+            path="register"
             element={
-              <Navigate to="/goit-react-hw-08-phonebook" replace={true} />
+              <PublicRoute>
+                <RegisterView />
+              </PublicRoute>
             }
           />
+          <Route
+            path="login"
+            element={
+              <PublicRoute>
+                <LoginView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="phoneBook"
+            element={
+              <PrivateRoute>
+                <PhoneBookView />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>
       </Container>
     )

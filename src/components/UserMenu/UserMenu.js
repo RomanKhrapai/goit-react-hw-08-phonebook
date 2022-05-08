@@ -20,10 +20,7 @@ export default function UserMenu() {
   const isLoggerIn = useSelector(authSelectors.getIsLoggedIn);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const routeMatch = useRouteMatch([
-    '/goit-react-hw-08-phonebook/register',
-    '/goit-react-hw-08-phonebook/login',
-  ]);
+  const routeMatch = useRouteMatch(['/register', '/login']);
 
   const currentTab = routeMatch ? routeMatch?.pattern?.path : false;
 
@@ -80,8 +77,8 @@ export default function UserMenu() {
                 Register
               </Typography>
             }
-            value="/goit-react-hw-08-phonebook/register"
-            to="/goit-react-hw-08-phonebook/register"
+            value="/register"
+            to="/register"
             component={Link}
           />
 
@@ -91,8 +88,8 @@ export default function UserMenu() {
                 Log in
               </Typography>
             }
-            value="/goit-react-hw-08-phonebook/login"
-            to="/goit-react-hw-08-phonebook/login"
+            value="/login"
+            to="/login"
             component={Link}
           />
         </Tabs>

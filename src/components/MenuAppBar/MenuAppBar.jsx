@@ -21,10 +21,7 @@ import UserMenu from 'components/UserMenu';
 export default function MenuAppBar() {
   const isLoggerIn = useSelector(authSelectors.getIsLoggedIn);
 
-  const routeMatch = useRouteMatch([
-    '/goit-react-hw-08-phonebook',
-    '/goit-react-hw-08-phonebook/phoneBook',
-  ]);
+  const routeMatch = useRouteMatch(['/', '/phoneBook']);
   const currentTab = routeMatch ? routeMatch?.pattern?.path : false;
 
   return (
@@ -50,8 +47,8 @@ export default function MenuAppBar() {
                     Home
                   </Typography>
                 }
-                value="/goit-react-hw-08-phonebook"
-                to="/goit-react-hw-08-phonebook"
+                value="/"
+                to="/"
                 component={Link}
               />
 
@@ -61,8 +58,8 @@ export default function MenuAppBar() {
                     Phone book
                   </Typography>
                 }
-                value="/goit-react-hw-08-phonebook/phoneBook"
-                to="/goit-react-hw-08-phonebook/phoneBook"
+                value="/phoneBook"
+                to="/phoneBook"
                 component={Link}
                 disabled={!isLoggerIn}
               />
