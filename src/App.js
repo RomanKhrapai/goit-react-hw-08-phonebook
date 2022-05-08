@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import authOperations from 'redux/auth/auth-operations';
@@ -28,32 +28,34 @@ function App() {
       <Container fixed>
         <MenuAppBar />
         <Routes>
-          <Route path="/" element={<HomeView />} />
-          <Route
-            path="register"
-            element={
-              <PublicRoute>
-                <RegisterView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute>
-                <LoginView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="phoneBook"
-            element={
-              <PrivateRoute>
-                <PhoneBookView />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/" replace={true} />} />
+          <Route path="/" element={<Outlet />}>
+            <Route index element={<HomeView />} />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <RegisterView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="phoneBook"
+              element={
+                <PrivateRoute>
+                  <PhoneBookView />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<HomeView />} />
+          </Route>
         </Routes>
       </Container>
     )

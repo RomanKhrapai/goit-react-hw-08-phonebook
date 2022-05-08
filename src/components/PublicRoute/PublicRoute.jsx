@@ -7,9 +7,5 @@ import authSelectors from '../../redux/auth/auth-selectors';
 export default function PublicRouter({ children }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
-  return !isLoggedIn ? (
-    children
-  ) : (
-    <Navigate to="/goit-react-hw-08-phonebook/phoneBook" replace={true} />
-  );
+  return !isLoggedIn ? children : <Navigate to="/phoneBook" replace={true} />;
 }
