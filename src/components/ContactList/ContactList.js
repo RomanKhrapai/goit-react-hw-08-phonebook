@@ -19,12 +19,10 @@ export default function ContactList() {
   const contacts = useSelector(getVisibleContacts);
   const isLoading = useSelector(getIsLoading);
   const dispatch = useDispatch();
-
   const showNumber = 6;
   const items = showAll ? contacts : contacts.slice(0, showNumber);
 
   useEffect(() => {
-    console.log('contact list retch contact ');
     dispatch(cotactsOperation.fetchContacts());
   }, []);
 
