@@ -48,7 +48,7 @@ export default function RegisterView() {
       <h1>Сторінка реєстрації</h1>
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
-          Neme
+          Name
           <input type="text" name="name" value={name} onChange={hendleChenge} />
         </label>
         <label style={styles.label}>
