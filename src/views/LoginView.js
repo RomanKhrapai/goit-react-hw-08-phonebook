@@ -40,7 +40,7 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1>Сторінка реєстрації</h1>
+      <h1>User Registration</h1>
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
           E-mail
@@ -60,6 +60,7 @@ export default function LoginView() {
             onChange={hendleChenge}
           />
         </label>
+
         <button type="sudmit"> Log in </button>
       </form>
     </div>

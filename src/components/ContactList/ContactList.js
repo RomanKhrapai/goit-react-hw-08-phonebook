@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
 import * as cotactsOperation from '../../redux/contacts/contacts-operations';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   getIsLoading,
   getVisibleContacts,
@@ -22,6 +24,7 @@ export default function ContactList() {
   const showNumber = 6;
   const items = showAll ? contacts : contacts.slice(0, showNumber);
   useEffect(() => {
+    console.log('contact list retch contact ');
     dispatch(cotactsOperation.fetchContacts());
   }, []);
 
@@ -35,13 +38,15 @@ export default function ContactList() {
         <>
           {items.map(({ id, name, number }) => (
             <ContactListItem key={id} name={name} number={number}>
-              <button
+              <Button
+                variant="outlined"
+                startIcon={<DeleteIcon />}
                 onClick={() => {
                   dispatch(cotactsOperation.deleteContact(id));
                 }}
               >
                 Delete
-              </button>
+              </Button>
             </ContactListItem>
           ))}
           {items[showNumber - 1] && (

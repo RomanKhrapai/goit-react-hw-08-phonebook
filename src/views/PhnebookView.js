@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
+
 import Filter from '../components/Filter';
 import ContactForm from '../components/ContactForm';
 import ContactList from '../components/ContactList';
 import { Layout } from '../components/Layout.styles';
+
 import { getError } from 'redux/contacts/contacts-selector';
 
-function PhoneBookView() {
+export default function PhoneBookView() {
   const error = useSelector(getError);
 
   useEffect(() => {
@@ -27,5 +29,3 @@ function PhoneBookView() {
     </Layout>
   );
 }
-
-export default PhoneBookView;
