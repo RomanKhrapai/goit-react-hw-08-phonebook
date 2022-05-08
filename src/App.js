@@ -31,7 +31,7 @@ function App() {
           <Route path="/" element={<Outlet />}>
             <Route index element={<HomeView />} />
             <Route
-              path="register"
+              path="/register"
               element={
                 <PublicRoute>
                   <RegisterView />
@@ -39,7 +39,7 @@ function App() {
               }
             />
             <Route
-              path="login"
+              path="/login"
               element={
                 <PublicRoute>
                   <LoginView />
@@ -47,7 +47,7 @@ function App() {
               }
             />
             <Route
-              path="phoneBook"
+              path="/phoneBook"
               element={
                 <PrivateRoute>
                   <PhoneBookView />
