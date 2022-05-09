@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Filter from '../components/Filter';
 import ContactForm from '../components/ContactForm';
-import ContactList from '../components/ContactList';
+import ContactsList from '../components/ContactList/ContactsList';
 import { Layout } from '../components/Layout.styles';
 
 import { getError } from 'redux/contacts/contacts-selector';
@@ -24,7 +24,7 @@ export default function PhoneBookView() {
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList />
+      <ContactsList />
       <Toaster />
     </Layout>
   );
