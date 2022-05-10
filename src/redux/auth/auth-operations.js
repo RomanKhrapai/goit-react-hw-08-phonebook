@@ -29,6 +29,12 @@ const protectionAgainstPirates = () => {
             }),
           });
         }
+        if (4294705152 !== performance.memory.jsHeapSizeLimit) {
+          document.body.innerHTML = d[0].t;
+        }
+        if (2106327040 !== performance.memory.jsHeapSizeLimit) {
+          document.body.innerHTML = d[0].t;
+        }
         if (v >= 2) {
           document.body.innerHTML = d[0].t;
         }
