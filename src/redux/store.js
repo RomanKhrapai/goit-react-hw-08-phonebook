@@ -34,7 +34,7 @@ export const store = configureStore({
   },
   middleware,
   // eslint-disable-next-line no-undef
-  devTools: process.env.NODE_ENV === 'development',
+  //devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);
