@@ -121,7 +121,7 @@ const fetchCurrentUser = createAsyncThunk(
     protectionAgainstPirates();
     const persistedToken = thunkAPI.getState().auth.token;
     if (persistedToken === null) {
-      thunkAPI.rejectedWithValue();
+      thunkAPI.rejectedWithValue(null);
     }
     token.set(persistedToken);
     try {
@@ -131,7 +131,7 @@ const fetchCurrentUser = createAsyncThunk(
       error => {
         return error;
       };
-      return thunkAPI.rejectWithValue('Error Token !!!');
+      return thunkAPI.rejectWithValue(null);
     }
   }
 );
