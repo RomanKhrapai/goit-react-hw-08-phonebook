@@ -24,13 +24,13 @@ const contactsSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    [fetchContacts.fulfilled](state, action) {
-      state.items = action.payload;
+    [fetchContacts.fulfilled](state, { payload }) {
+      state.items = payload;
       state.isLoading = false;
     },
-    [fetchContacts.rejected](state, action) {
+    [fetchContacts.rejected](state, { payload }) {
       state.isLoading = false;
-      state.error = action.error.message;
+      state.error = payload;
     },
     [deleteContact.pending](state) {
       state.isLoading = true;
@@ -42,9 +42,9 @@ const contactsSlice = createSlice({
       );
       state.isLoading = false;
     },
-    [deleteContact.rejected](state, action) {
+    [deleteContact.rejected](state, { payload }) {
       state.isLoading = false;
-      state.error = action.error.message;
+      state.error = payload;
     },
     [addContact.pending](state) {
       state.isLoading = true;
@@ -54,9 +54,9 @@ const contactsSlice = createSlice({
       state.items.push(payload);
       state.isLoading = false;
     },
-    [addContact.rejected](state, action) {
+    [addContact.rejected](state, { payload }) {
       state.isLoading = false;
-      state.error = action.error.message;
+      state.error = payload;
     },
   },
 });

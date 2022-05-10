@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import { InputAdornment, Button, TextField, Box } from '@mui/material';
+import {
+  Password,
+  HowToReg,
+  AlternateEmail,
+  AccountCircle,
+} from '@mui/icons-material';
 
 export default function RegisterView() {
   const dispatch = useDispatch();
@@ -19,7 +15,7 @@ export default function RegisterView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const hendleChenge = ({ target: { name, value } }) => {
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
         setName(value);
@@ -45,32 +41,69 @@ export default function RegisterView() {
 
   return (
     <div>
-      <h1>Сторінка реєстрації</h1>
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Name
-          <input type="text" name="name" value={name} onChange={hendleChenge} />
-        </label>
-        <label style={styles.label}>
-          E-mail
-          <input
-            type="mail"
-            name="email"
-            value={email}
-            onChange={hendleChenge}
-          />
-        </label>
-        <label style={styles.label}>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={hendleChenge}
-          />
-        </label>
-        <button type="sudmit"> Sudmit </button>
-      </form>
+      <h1>User Registration</h1>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        sx={{ p: 2, border: '1px dashed grey', width: 320 }}
+      >
+        <TextField
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          label="Name"
+          variant="standard"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          type="mail"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          label="E-mail"
+          variant="standard"
+          required
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AlternateEmail />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          label="Password"
+          variant="standard"
+          required
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Password />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mb: 2 }}
+        />
+        <Button variant="contained" type="submit" endIcon={<HowToReg />}>
+          Log in
+        </Button>
+      </Box>
     </div>
   );
 }

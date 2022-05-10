@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Filter from '../components/Filter';
 import ContactForm from '../components/ContactForm';
-import ContactsList from '../components/ContactList/ContactsList';
+import ContactsList from '../components/ContactList';
 import { Layout } from '../components/Layout.styles';
 
 import { getError } from 'redux/contacts/contacts-selector';

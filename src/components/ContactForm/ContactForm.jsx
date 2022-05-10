@@ -79,6 +79,7 @@ export default function ContactForm() {
             </InputAdornment>
           ),
         }}
+        sx={{ mb: 2 }}
         error={error}
       />
 
@@ -99,6 +100,7 @@ export default function ContactForm() {
             </InputAdornment>
           ),
         }}
+        sx={{ mb: 2 }}
       />
       <Button variant="contained" type="submit" endIcon={<Send />}>
         Send

@@ -19,15 +19,14 @@ import {
 
 export default function ContactList() {
   const [showAll, setshowAll] = useState(false);
-  const contacts = useSelector(getVisibleContacts);
-  const isLoading = useSelector(getIsLoading);
-  const dispatch = useDispatch();
-  const showNumber = 6;
   const [loadingCheck, setLoadingCheck] = useState('');
 
-  //   const [secondary, setSecondary] = useState(false);
+  const contacts = useSelector(getVisibleContacts);
+  const isLoading = useSelector(getIsLoading);
 
-  // eslint-disable-next-line no-unused-vars
+  const dispatch = useDispatch();
+
+  const showNumber = 6;
   const items = showAll ? contacts : contacts.slice(0, showNumber);
 
   useEffect(() => {
@@ -66,11 +65,7 @@ export default function ContactList() {
                 <Face />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText
-              primary={name}
-              secondary={number}
-              // secondary={"true" ? 'Secondary text' : null}
-            />
+            <ListItemText primary={name} secondary={number} />
           </ListItem>
         ))}
       </List>

@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import { InputAdornment, Button, TextField, Box } from '@mui/material';
+import { Password, Login, AlternateEmail } from '@mui/icons-material';
 
 export default function LoginView() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const hendleChenge = ({ target: { name, value } }) => {
+  const hendleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
         setEmail(value);
@@ -40,29 +31,52 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1>User Registration</h1>
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          E-mail
-          <input
-            type="mail"
-            name="email"
-            value={email}
-            onChange={hendleChenge}
-          />
-        </label>
-        <label style={styles.label}>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={hendleChenge}
-          />
-        </label>
+      <h1>User Login</h1>
 
-        <button type="sudmit"> Log in </button>
-      </form>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        sx={{ p: 2, border: '1px dashed grey', width: 320 }}
+      >
+        <TextField
+          type="mail"
+          name="email"
+          value={email}
+          onChange={hendleChange}
+          label="E-mail"
+          variant="standard"
+          required
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AlternateEmail />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          type="password"
+          name="password"
+          value={password}
+          onChange={hendleChange}
+          label="Password"
+          variant="standard"
+          required
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Password />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mb: 2 }}
+        />
+        <Button variant="contained" type="submit" endIcon={<Login />}>
+          Log in
+        </Button>
+      </Box>
     </div>
   );
 }

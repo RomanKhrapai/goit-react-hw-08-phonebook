@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from 'redux/auth/auth-selectors';
 import authOperations from 'redux/auth/auth-operations';
@@ -15,13 +15,13 @@ import {
 import useRouteMatch from 'useHooks/useRouteMatch';
 
 export default function UserMenu() {
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
+
   const userName = useSelector(authSelectors.getUsername);
   const isLoggerIn = useSelector(authSelectors.getIsLoggedIn);
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const routeMatch = useRouteMatch(['/register', '/login']);
-
   const currentTab = routeMatch ? routeMatch?.pattern?.path : false;
 
   useEffect(() => {

@@ -13,12 +13,22 @@ import MenuAppBar from 'components/MenuAppBar';
 import Container from '@mui/material/Container';
 import PrivateRoute from 'components/PrivatRoute';
 import PublicRoute from 'components/PublicRoute';
+import toast, { Toaster } from 'react-hot-toast';
 
 import './App.css';
 
 function App() {
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurent);
   const dispatch = useDispatch();
+
+  const error = useSelector(authSelectors.getErrorauth);
+
+  useEffect(() => {
+    if (error !== null) {
+      toast.error(error);
+    }
+  }, [error]);
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -57,6 +67,7 @@ function App() {
             <Route path="*" element={<HomeView />} />
           </Route>
         </Routes>
+        <Toaster />
       </Container>
     )
   );

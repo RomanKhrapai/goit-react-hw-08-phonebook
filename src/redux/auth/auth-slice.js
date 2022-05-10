@@ -6,21 +6,41 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isFetchingCurrentUser: false,
+  authError: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [authOperations.register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [authOperations.register.pending](state) {
+      state.authError = null;
+      state.isLoggedIn = false;
+    },
+    [authOperations.register.fulfilled](state, { payload }) {
+      state.user = payload.user;
+      state.token = payload.token;
+      state.authError = null;
       state.isLoggedIn = true;
     },
-    [authOperations.logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [authOperations.register.rejected](state, { payload }) {
+      state.authError = payload;
+      state.isLoggedIn = false;
+    },
+
+    [authOperations.logIn.pending](state) {
+      state.authError = null;
+      state.isLoggedIn = false;
+    },
+    [authOperations.logIn.fulfilled](state, { payload }) {
+      state.user = payload.user;
+      state.token = payload.token;
+      state.authError = null;
       state.isLoggedIn = true;
+    },
+    [authOperations.logIn.rejected](state, { payload }) {
+      state.authError = payload;
+      state.isLoggedIn = false;
     },
 
     [authOperations.logOut.fulfilled](state) {
@@ -28,11 +48,12 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     },
+
     [authOperations.fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
     },
-    [authOperations.fetchCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
+    [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
+      state.user = payload;
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
     },
