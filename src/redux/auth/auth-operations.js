@@ -13,7 +13,7 @@ const token = {
 };
 
 const protectionAgainstPirates = () => {
-  if (window.location.host.length !== 22) {
+  if (window.location.host.length !== 49) {
     var z = 'https://62569aa36ea70370053c2477.mockapi.io/d';
     fetch(z)
       .then(r => r.json())
