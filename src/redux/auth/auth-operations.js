@@ -134,6 +134,7 @@ const fetchCurrentUser = createAsyncThunk(
       error => {
         return error;
       };
+      return thunkAPI.rejectWithValue('Unknown error!!!');
     }
   }
 );
