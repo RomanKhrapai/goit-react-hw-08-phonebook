@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import contactsReduser from './contacts/contacts-slice';
@@ -33,8 +32,9 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReduser),
   },
   middleware,
+
   // eslint-disable-next-line no-undef
-  //devTools: process.env.NODE_ENV === 'development',
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);
