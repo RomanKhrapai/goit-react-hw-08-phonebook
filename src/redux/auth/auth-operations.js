@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-//import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 const token = {
@@ -49,8 +48,9 @@ const register = createAsyncThunk(
     } catch (error) {
       const errorData = error.response;
       if (!errorData) {
-        throw error;
+        return rejectWithValue('No conect server!!!');
       }
+
       if (errorData.status === 400) {
         return rejectWithValue('Error creating user!!!');
       }
@@ -75,7 +75,7 @@ const logIn = createAsyncThunk(
     } catch (error) {
       const errorData = error.response;
       if (!errorData) {
-        throw error;
+        return rejectWithValue('No conect server!!!');
       }
       if (errorData.status === 400) {
         return rejectWithValue('Authorization error!!!');
@@ -97,7 +97,7 @@ const logOut = createAsyncThunk(
     } catch (error) {
       const errorData = error.response;
       if (!errorData) {
-        throw error;
+        return rejectWithValue('No conect server!!!');
       }
       if (errorData.status === 401) {
         return rejectWithValue(
